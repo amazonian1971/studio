@@ -1,4 +1,4 @@
-import type { User, Promise, Group } from '@/lib/types';
+import type { User, Promise, Group, Notification } from '@/lib/types';
 
 export const mockUsers: User[] = [
   { id: 'user-1', name: 'Alice Johnson', avatarUrl: 'https://picsum.photos/seed/1/200/200' },
@@ -85,4 +85,37 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-07-25T16:00:00'),
     groupId: 'group-2',
   },
+];
+
+export const mockNotifications: Notification[] = [
+  {
+    id: 'notif-1',
+    type: 'NEW_PROMISE',
+    user: mockUsers[1],
+    promise: mockPromises[1],
+    createdAt: new Date('2024-07-21T11:35:00'),
+    isRead: false,
+  },
+  {
+    id: 'notif-2',
+    type: 'FOLLOW',
+    user: mockUsers[2],
+    createdAt: new Date('2024-07-20T15:00:00'),
+    isRead: true,
+  },
+  {
+    id: 'notif-3',
+    type: 'DEADLINE_REMINDER',
+    promise: mockPromises[0],
+    createdAt: new Date('2024-09-29T09:00:00'),
+    isRead: false,
+  },
+  {
+    id: 'notif-4',
+    type: 'PROMISE_COMPLETED',
+    user: mockUsers[0],
+    promise: { ...mockPromises[0], title: 'A previously completed promise' },
+    createdAt: new Date('2024-07-19T18:00:00'),
+    isRead: true,
+  }
 ];

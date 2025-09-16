@@ -1,7 +1,7 @@
 "use client";
 
 import { UserNav } from "@/components/layout/user-nav"
-import { Handshake, Loader2, Users } from "lucide-react"
+import { Bell, Handshake, Loader2, Users } from "lucide-react"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { useAuth } from "@/hooks/use-auth";
@@ -12,9 +12,12 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import { mockNotifications } from "@/lib/placeholder-data";
+import { Badge } from "../ui/badge";
 
 export function Header() {
   const { user, loading } = useAuth();
+  const unreadCount = mockNotifications.filter(n => !n.isRead).length;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -48,11 +51,22 @@ export function Header() {
           </NavigationMenu>
           )}
         </div>
-        <div className="flex flex-1 items-center justify-end space-x-4">
+        <div className="flex flex-1 items-center justify-end space-x-2">
           { loading ? (
             <Loader2 className="h-6 w-6 animate-spin" />
           ) : user ? (
+            <>
+            <Button variant="ghost" size="icon" asChild>
+                <Link href="/notifications">
+                    <Bell className="h-5 w-5" />
+                    {unreadCount > 0 && (
+                       <Badge className="absolute top-1 right-1 h-5 w-5 justify-center p-0">{unreadCount}</Badge>
+                    )}
+                    <span className="sr-only">Notifications</span>
+                </Link>
+            </Button>
             <UserNav />
+            </>
           ) : (
             <div className="flex items-center gap-2">
                <Button asChild variant="ghost">

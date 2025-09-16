@@ -1,14 +1,14 @@
-// The AI code was generated, but please review it carefully to ensure it meets your requirements.
+
 "use client";
 
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '@/lib/firebase/client';
-import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { doc, getDoc, getFirestore, DocumentData } from 'firebase/firestore';
 
 interface AuthContextType {
   user: User | null;
-  userData: any | null;
+  userData: DocumentData | null;
   loading: boolean;
 }
 
@@ -20,7 +20,7 @@ const AuthContext = createContext<AuthContextType>({
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [userData, setUserData] = useState<any | null>(null);
+  const [userData, setUserData] = useState<DocumentData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,9 +28,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (user) {
         setUser(user);
         const db = getFirestore();
-        const userDoc = await getDoc(doc(db, 'users', user.uid));
-        if (userDoc.exists()) {
-          setUserData(userDoc.data());
+        const userDocRef = doc(db, 'users', user.uid);
+        try {
+            const userDoc = await getDoc(userDocRef);
+            if (userDoc.exists()) {
+              setUserData(userDoc.data());
+            } else {
+              setUserData(null); 
+            }
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+            setUserData(null);
         }
       } else {
         setUser(null);

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -17,7 +18,7 @@ export default function ProfilePage() {
         }
     }, [user, loading, router]);
     
-    if (loading || !userData) {
+    if (loading || !user || !userData) {
         return (
             <div className="flex min-h-screen items-center justify-center">
                 <Loader2 className="h-16 w-16 animate-spin" />
@@ -25,23 +26,25 @@ export default function ProfilePage() {
         );
     }
     
-    const userInitials = userData.name.split(" ").map((n:string) => n[0]).join("");
+    const userInitials = userData.name?.split(" ").map((n:string) => n[0]).join("") || "";
     // Mock promise data for now
     const promisesMade = 12;
     const promisesKept = 9;
+
+    const successRate = promisesMade > 0 ? Math.round((promisesKept / promisesMade) * 100) : 0;
 
     return (
         <div className="container max-w-4xl py-8">
             <Card>
                 <CardHeader className="flex flex-col items-center text-center space-y-4">
                     <Avatar className="h-24 w-24 border-4 border-primary">
-                        <AvatarImage src={userData.avatarUrl || `https://avatar.vercel.sh/${userData.email}.png`} alt={userData.name} data-ai-hint="person laughing"/>
+                        <AvatarImage src={userData.avatarUrl || `https://avatar.vercel.sh/${userData.email}.png`} alt={userData.name || ""} data-ai-hint="person laughing"/>
                         <AvatarFallback className="text-4xl">{userInitials}</AvatarFallback>
                     </Avatar>
                     <div className="space-y-1">
                         <CardTitle className="text-3xl">{userData.name}</CardTitle>
                         <p className="text-muted-foreground">{userData.email}</p>
-                        <p className="text-sm text-muted-foreground">Joined on {new Date(userData.createdAt.seconds * 1000).toLocaleDateString()}</p>
+                        {userData.createdAt && <p className="text-sm text-muted-foreground">Joined on {new Date(userData.createdAt.seconds * 1000).toLocaleDateString()}</p>}
                     </div>
                 </CardHeader>
                 <CardContent>
@@ -55,7 +58,7 @@ export default function ProfilePage() {
                             <p className="text-muted-foreground">Promises Kept</p>
                         </div>
                         <div className="p-4 bg-secondary rounded-lg">
-                            <p className="text-2xl font-bold">{Math.round((promisesKept / promisesMade) * 100)}%</p>
+                            <p className="text-2xl font-bold">{successRate}%</p>
                             <p className="text-muted-foreground">Success Rate</p>
                         </div>
                     </div>

@@ -23,3 +23,12 @@ export interface Group {
   isPublic: boolean;
   members: User[];
 }
+
+export interface Notification {
+  id: string;
+  type: 'NEW_PROMISE' | 'DEADLINE_REMINDER' | 'PROMISE_COMPLETED' | 'FOLLOW';
+  user?: User;
+  promise?: Promise;
+  createdAt: Date;
+  isRead: boolean;
+}
