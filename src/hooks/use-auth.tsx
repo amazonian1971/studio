@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setLoading(true);
       if (user) {
         setUser(user);
         const db = getFirestore();
@@ -39,12 +40,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         } catch (error) {
             console.error("Error fetching user data:", error);
             setUserData(null);
+        } finally {
+            setLoading(false);
         }
       } else {
         setUser(null);
         setUserData(null);
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -58,3 +61,5 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+
+
