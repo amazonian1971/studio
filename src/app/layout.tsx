@@ -9,6 +9,7 @@ import { AuthProvider } from '@/hooks/use-auth';
 export const metadata: Metadata = {
   title: 'PromiseWeb',
   description: 'A new way to make and keep promises.',
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({
