@@ -88,14 +88,14 @@ export function CreatePromiseButton() {
           <span className="sr-only">Create a new promise</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[625px]">
+      <DialogContent className="sm:max-w-md max-h-[90vh] flex flex-col">
         <DialogHeader>
           <DialogTitle className="text-2xl">Make a New Promise</DialogTitle>
           <DialogDescription>
             What will you commit to? Share your goal with the world.
           </DialogDescription>
         </DialogHeader>
-        <div className="py-4">
+        <div className="py-4 overflow-y-auto pr-6">
           {form}
         </div>
       </DialogContent>
