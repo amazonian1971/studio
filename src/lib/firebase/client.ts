@@ -1,6 +1,6 @@
 // The AI code was generated, but please review it carefully to ensure it meets your requirements.
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { firebaseConfig } from "@/lib/firebase-config";
 
@@ -33,4 +33,10 @@ const logOut = () => {
   return signOut(auth);
 };
 
-export { auth, db, signUp, signIn, logOut };
+// Password reset function
+const sendPasswordReset = (email: string) => {
+  return sendPasswordResetEmail(auth, email);
+};
+
+
+export { auth, db, signUp, signIn, logOut, sendPasswordReset };
