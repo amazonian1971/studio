@@ -214,7 +214,7 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
             <FormItem>
               <FormLabel>Tags</FormLabel>
               <FormControl>
-                <>
+                <div>
                   <SmartTagger 
                     title={watchTitle} 
                     description={watchDescription} 
@@ -230,7 +230,7 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
                       </Badge>
                     ))}
                   </div>
-                 </>
+                 </div>
               </FormControl>
               <FormDescription>
                 AI can suggest tags based on your title and description. You can also add your own.
