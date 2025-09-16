@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -18,10 +19,12 @@ import { signUp, signInWithGoogle } from "@/lib/firebase/client";
 import { Loader2 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import type { FirebaseError } from "firebase/app";
+import { useConfetti } from "@/hooks/use-confetti";
 
 export default function SignupPage() {
   const router = useRouter();
   const { toast } = useToast();
+  const confetti = useConfetti();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,6 +40,7 @@ export default function SignupPage() {
         title: "Account Created",
         description: "You've been successfully signed up.",
       });
+      confetti.fire();
       router.push("/feed");
     } catch (error: any) {
       toast({
@@ -57,6 +61,7 @@ export default function SignupPage() {
         title: "Account Created",
         description: "You've been successfully signed up with Google.",
       });
+      confetti.fire();
       router.push("/feed");
     } catch (error: any) {
       const firebaseError = error as FirebaseError;
