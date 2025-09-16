@@ -1,8 +1,12 @@
 
+
 export interface User {
   id: string;
   name: string;
+  email?: string;
+  phone?: string;
   avatarUrl: string;
+  createdAt?: any;
 }
 
 export interface Promise {
@@ -15,6 +19,9 @@ export interface Promise {
   tags: string[];
   createdAt: Date;
   groupId?: string;
+  attachments?: string[];
+  imageURLs?: string[];
+  status?: 'pending' | 'kept' | 'broken';
 }
 
 export interface Group {

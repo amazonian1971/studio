@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -44,7 +45,7 @@ export default function ProfilePage() {
                     <div className="space-y-1">
                         <CardTitle className="text-3xl">{userData.name}</CardTitle>
                         <p className="text-muted-foreground">{userData.email}</p>
-                        {userData.createdAt && <p className="text-sm text-muted-foreground">Joined on {new Date(userData.createdAt.seconds * 1000).toLocaleDateString()}</p>}
+                        {userData.createdAt?.seconds && <p className="text-sm text-muted-foreground">Joined on {new Date(userData.createdAt.seconds * 1000).toLocaleDateString()}</p>}
                     </div>
                 </CardHeader>
                 <CardContent>
@@ -72,5 +73,3 @@ export default function ProfilePage() {
         </div>
     );
 }
-
-

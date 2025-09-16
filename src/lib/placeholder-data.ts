@@ -2,18 +2,18 @@
 import type { User, Promise, Group, Notification, UserSuggestion } from '@/lib/types';
 
 export const mockUsers: User[] = [
-  { id: 'user-1', name: 'Alice Johnson', avatarUrl: 'https://picsum.photos/seed/1/200/200' },
-  { id: 'user-2', name: 'Bob Williams', avatarUrl: 'https://picsum.photos/seed/2/200/200' },
-  { id: 'user-3', name: 'Charlie Brown', avatarUrl: 'https://picsum.photos/seed/3/200/200' },
-  { id: 'user-4', name: 'Diana Miller', avatarUrl: 'https://picsum.photos/seed/4/200/200' },
-  { id: 'user-5', name: 'Ethan Davis', avatarUrl: 'https://picsum.photos/seed/5/200/200' },
-  { id: 'user-6', name: 'Fiona Garcia', avatarUrl: 'https://picsum.photos/seed/6/200/200' },
-  { id: 'user-7', name: 'George Rodriguez', avatarUrl: 'https://picsum.photos/seed/7/200/200' },
-  { id: 'user-8', name: 'Hannah Martinez', avatarUrl: 'https://picsum.photos/seed/8/200/200' },
-  { id: 'user-9', name: 'Ian Hernandez', avatarUrl: 'https://picsum.photos/seed/9/200/200' },
-  { id: 'user-10', name: 'Julia Lopez', avatarUrl: 'https://picsum.photos/seed/10/200/200' },
-  { id: 'user-11', name: 'Kevin Gonzalez', avatarUrl: 'https://picsum.photos/seed/11/200/200' },
-  { id: 'user-12', name: 'Laura Wilson', avatarUrl: 'https://picsum.photos/seed/12/200/200' },
+  { id: 'user-1', name: 'Alice Johnson', email: 'alice@example.com', avatarUrl: 'https://picsum.photos/seed/1/200/200', createdAt: new Date() },
+  { id: 'user-2', name: 'Bob Williams', email: 'bob@example.com', avatarUrl: 'https://picsum.photos/seed/2/200/200', createdAt: new Date() },
+  { id: 'user-3', name: 'Charlie Brown', email: 'charlie@example.com', avatarUrl: 'https://picsum.photos/seed/3/200/200', createdAt: new Date() },
+  { id: 'user-4', name: 'Diana Miller', email: 'diana@example.com', avatarUrl: 'https://picsum.photos/seed/4/200/200', createdAt: new Date() },
+  { id: 'user-5', name: 'Ethan Davis', email: 'ethan@example.com', avatarUrl: 'https://picsum.photos/seed/5/200/200', createdAt: new Date() },
+  { id: 'user-6', name: 'Fiona Garcia', email: 'fiona@example.com', avatarUrl: 'https://picsum.photos/seed/6/200/200', createdAt: new Date() },
+  { id: 'user-7', name: 'George Rodriguez', email: 'george@example.com', avatarUrl: 'https://picsum.photos/seed/7/200/200', createdAt: new Date() },
+  { id: 'user-8', name: 'Hannah Martinez', email: 'hannah@example.com', avatarUrl: 'https://picsum.photos/seed/8/200/200', createdAt: new Date() },
+  { id: 'user-9', name: 'Ian Hernandez', email: 'ian@example.com', avatarUrl: 'https://picsum.photos/seed/9/200/200', createdAt: new Date() },
+  { id: 'user-10', name: 'Julia Lopez', email: 'julia@example.com', avatarUrl: 'https://picsum.photos/seed/10/200/200', createdAt: new Date() },
+  { id: 'user-11', name: 'Kevin Gonzalez', email: 'kevin@example.com', avatarUrl: 'https://picsum.photos/seed/11/200/200', createdAt: new Date() },
+  { id: 'user-12', name: 'Laura Wilson', email: 'laura@example.com', avatarUrl: 'https://picsum.photos/seed/12/200/200', createdAt: new Date() },
 ];
 
 export const mockGroups: Group[] = [
@@ -88,6 +88,7 @@ export const mockPromises: Promise[] = [
     tags: ['Reports', 'Deadlines', 'Projects'],
     createdAt: new Date('2024-07-20T10:00:00'),
     groupId: 'group-1',
+    status: 'pending',
   },
   {
     id: 'promise-2',
@@ -99,6 +100,7 @@ export const mockPromises: Promise[] = [
     tags: ['Meetings', 'Projects'],
     createdAt: new Date('2024-08-01T14:30:00'),
     groupId: 'group-1',
+    status: 'pending',
   },
 
   // Health
@@ -112,6 +114,7 @@ export const mockPromises: Promise[] = [
     tags: ['Exercise', 'Challenges'],
     createdAt: new Date('2024-07-21T11:30:00'),
     groupId: 'group-2',
+    status: 'pending',
   },
   {
     id: 'promise-4',
@@ -123,6 +126,7 @@ export const mockPromises: Promise[] = [
     tags: ['Meditation', 'Habits'],
     createdAt: new Date('2024-07-28T09:00:00'),
     groupId: 'group-2',
+    status: 'kept',
   },
    {
     id: 'promise-5',
@@ -133,6 +137,7 @@ export const mockPromises: Promise[] = [
     category: 'Health',
     tags: ['Diet', 'Challenges'],
     createdAt: new Date('2024-08-01T12:00:00'),
+    status: 'broken',
   },
 
   // Finance
@@ -145,6 +150,7 @@ export const mockPromises: Promise[] = [
     category: 'Finance',
     tags: ['Savings', 'Bills'],
     createdAt: new Date('2024-07-25T18:00:00'),
+    status: 'pending',
   },
   {
     id: 'promise-7',
@@ -156,6 +162,7 @@ export const mockPromises: Promise[] = [
     tags: ['Investments'],
     createdAt: new Date('2024-07-29T20:00:00'),
     groupId: 'group-3',
+    status: 'pending',
   },
 
   // Education
@@ -169,6 +176,7 @@ export const mockPromises: Promise[] = [
     tags: ['Courses', 'Skills'],
     createdAt: new Date('2024-07-15T16:00:00'),
     groupId: 'group-6',
+    status: 'kept',
   },
   {
     id: 'promise-9',
@@ -180,6 +188,7 @@ export const mockPromises: Promise[] = [
     tags: ['Reading'],
     createdAt: new Date('2024-07-25T16:00:00'),
     groupId: 'group-4',
+    status: 'pending',
   },
 
   // Relationships
@@ -193,6 +202,7 @@ export const mockPromises: Promise[] = [
     tags: ['Family', 'Events'],
     createdAt: new Date('2024-07-22T18:45:00'),
     groupId: 'group-5',
+    status: 'pending',
   },
   {
     id: 'promise-11',
@@ -203,6 +213,7 @@ export const mockPromises: Promise[] = [
     category: 'Relationships',
     tags: ['Family', 'Habits'],
     createdAt: new Date('2024-07-01T10:00:00'),
+    status: 'pending',
   },
 
   // Personal Growth
@@ -216,6 +227,7 @@ export const mockPromises: Promise[] = [
     tags: ['Skills', 'Projects', 'Challenges'],
     createdAt: new Date('2024-07-22T14:00:00'),
     groupId: 'group-6',
+    status: 'pending',
   },
   {
     id: 'promise-13',
@@ -226,6 +238,7 @@ export const mockPromises: Promise[] = [
     category: 'Personal Growth',
     tags: ['Journaling', 'Habits'],
     createdAt: new Date('2024-07-31T21:00:00'),
+    status: 'pending',
   },
   
   // Travel
@@ -239,6 +252,7 @@ export const mockPromises: Promise[] = [
     tags: ['Trips', 'Tickets', 'Destinations'],
     createdAt: new Date('2024-08-01T19:00:00'),
     groupId: 'group-7',
+    status: 'pending',
   },
   {
     id: 'promise-15',
@@ -249,6 +263,7 @@ export const mockPromises: Promise[] = [
     category: 'Travel',
     tags: ['Packing', 'Trips'],
     createdAt: new Date('2024-08-07T11:00:00'),
+    status: 'kept',
   },
   
   // Events
@@ -261,6 +276,7 @@ export const mockPromises: Promise[] = [
     category: 'Events',
     tags: ['Concerts', 'Tickets'],
     createdAt: new Date('2024-08-02T13:00:00'),
+    status: 'kept',
   },
   
   // Community
@@ -274,6 +290,7 @@ export const mockPromises: Promise[] = [
     tags: ['Volunteering', 'Causes'],
     createdAt: new Date('2024-08-03T15:00:00'),
     groupId: 'group-8',
+    status: 'pending',
   },
   {
     id: 'promise-18',
@@ -285,6 +302,7 @@ export const mockPromises: Promise[] = [
     tags: ['Charity', 'Donations', 'Events'],
     createdAt: new Date('2024-08-04T12:00:00'),
     groupId: 'group-8',
+    status: 'pending',
   },
 ];
 
