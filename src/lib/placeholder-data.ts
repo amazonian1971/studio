@@ -1,5 +1,5 @@
 
-import type { User, Promise, Group, Notification } from '@/lib/types';
+import type { User, Promise, Group, Notification, UserSuggestion } from '@/lib/types';
 
 export const mockUsers: User[] = [
   { id: 'user-1', name: 'Alice Johnson', avatarUrl: 'https://picsum.photos/seed/1/200/200' },
@@ -321,3 +321,31 @@ export const mockNotifications: Notification[] = [
     isRead: true,
   }
 ];
+
+
+export const mockUserSuggestions: UserSuggestion[] = [
+    {
+        user: mockUsers[3],
+        reason: "You are both in the 'Global Trotters' group."
+    },
+    {
+        user: mockUsers[4],
+        reason: "You both promised to do something for your family."
+    },
+    {
+        user: mockUsers[6],
+        reason: "You are both in the 'Investment Club' and 'Coding Challenges' groups."
+    },
+    {
+        user: mockUsers[7],
+        reason: "You are both in the 'Bookworms Society' group."
+    },
+     {
+        user: mockUsers[9],
+        reason: "You both have an interest in Personal Growth."
+    },
+    {
+        user: mockUsers[11],
+        reason: "You are both in the 'Global Trotters' group."
+    }
+]

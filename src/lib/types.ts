@@ -1,3 +1,4 @@
+
 export interface User {
   id: string;
   name: string;
@@ -31,4 +32,9 @@ export interface Notification {
   promise?: Promise;
   createdAt: Date;
   isRead: boolean;
+}
+
+export interface UserSuggestion {
+    user: User;
+    reason: string;
 }

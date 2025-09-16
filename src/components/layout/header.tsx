@@ -1,7 +1,8 @@
+
 "use client";
 
 import { UserNav } from "@/components/layout/user-nav"
-import { Bell, Handshake, Loader2, Users } from "lucide-react"
+import { Bell, Handshake, Loader2, UserPlus, Users } from "lucide-react"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { useAuth } from "@/hooks/use-auth";
@@ -50,6 +51,14 @@ export function Header() {
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     <Users className="mr-2 h-4 w-4" />
                     Groups
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/suggestions" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <UserPlus className="mr-2 h-4 w-4" />
+                    Suggestions
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
