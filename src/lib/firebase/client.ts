@@ -1,7 +1,7 @@
 // The AI code was generated, but please review it carefully to ensure it meets your requirements.
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { firebaseConfig } from "@/lib/firebase-config";
 
 // Initialize Firebase
@@ -28,6 +28,28 @@ const signIn = (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
 
+// Google Sign-In function
+const signInWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    const userCredential = await signInWithPopup(auth, provider);
+    const user = userCredential.user;
+
+    // Check if user exists in Firestore, if not create a new document
+    const userDocRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userDocRef);
+
+    if (!userDoc.exists()) {
+        await setDoc(userDocRef, {
+            uid: user.uid,
+            name: user.displayName,
+            email: user.email,
+            avatarUrl: user.photoURL,
+            createdAt: new Date(),
+        });
+    }
+    return user;
+};
+
 // Sign out function
 const logOut = () => {
   return signOut(auth);
@@ -39,4 +61,4 @@ const sendPasswordReset = (email: string) => {
 };
 
 
-export { auth, db, signUp, signIn, logOut, sendPasswordReset };
+export { auth, db, signUp, signIn, logOut, sendPasswordReset, signInWithGoogle };
