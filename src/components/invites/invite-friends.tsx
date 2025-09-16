@@ -16,8 +16,8 @@ export function InviteFriends() {
     }
 
     const inviteLink = `${window.location.origin}/signup?ref=${user.uid}`;
-    const whatsappText = encodeURIComponent(`Join me on PromiseWeb! 🤝 Let’s keep promises together 👉 ${inviteLink}`);
-    const smsText = encodeURIComponent(`Join me on PromiseWeb 🤝 Keep promises & grow with me 👉 ${inviteLink}`);
+    const whatsappText = encodeURIComponent(`Join me on TrusTNet! 🤝 Let’s keep promises together 👉 ${inviteLink}`);
+    const smsText = encodeURIComponent(`Join me on TrusTNet 🤝 Keep promises & grow with me 👉 ${inviteLink}`);
 
     const whatsappLink = `https://wa.me/?text=${whatsappText}`;
     const smsLink = `sms:?&body=${smsText}`;
@@ -26,8 +26,8 @@ export function InviteFriends() {
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: 'Join me on PromiseWeb',
-                    text: 'Join me on PromiseWeb! 🤝 Let’s keep promises together.',
+                    title: 'Join me on TrusTNet',
+                    text: 'Join me on TrusTNet! 🤝 Let’s keep promises together.',
                     url: inviteLink,
                 });
             } catch (error) {

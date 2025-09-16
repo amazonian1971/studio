@@ -35,13 +35,9 @@ export default function WelcomePage() {
     },
   ];
 
-  const socialProof = [
-    PlaceHolderImages.find((img) => img.id === 'user-1'),
-    PlaceHolderImages.find((img) => img.id === 'user-2'),
-    PlaceHolderImages.find((img) => img.id === 'user-3'),
-    PlaceHolderImages.find((img) => img.id === 'user-4'),
-    PlaceHolderImages.find((img) => img.id === 'user-5'),
-  ].filter((user): user is NonNullable<typeof user> => !!user);
+  const socialProof = PlaceHolderImages.filter((img) =>
+    ['user-1', 'user-2', 'user-3', 'user-4', 'user-5'].includes(img.id)
+  );
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -51,7 +47,7 @@ export default function WelcomePage() {
             <div className="flex flex-col items-center space-y-4">
               <Handshake className="h-16 w-16 text-primary" />
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
-                Welcome to PromiseWeb
+                Welcome to TrusTNet
               </h1>
               <p className="max-w-[700px] text-muted-foreground md:text-xl">
                 A new way to make and keep promises. Build trust and
@@ -99,7 +95,7 @@ export default function WelcomePage() {
             </h2>
             <p className="max-w-[600px] mx-auto text-muted-foreground md:text-xl mb-8">
               Thousands of users are already making and keeping their promises on
-              PromiseWeb.
+              TrusTNet.
             </p>
             <div className="flex justify-center items-center -space-x-2">
               {socialProof.map((user, index) => (
@@ -118,9 +114,14 @@ export default function WelcomePage() {
           </div>
         </section>
       </main>
-      <footer className="py-6 border-t">
+      <footer className="py-8 border-t">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
-          © {year} PromiseWeb. All rights reserved.
+          <p className="mb-4">© {year} TrusTNet. All rights reserved.</p>
+          <div className="flex justify-center gap-4">
+            <Link href="/about" className="hover:underline">About Us</Link>
+            <Link href="/terms" className="hover:underline">Terms & Conditions</Link>
+            <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
+          </div>
         </div>
       </footer>
     </div>

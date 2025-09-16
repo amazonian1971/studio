@@ -7,7 +7,7 @@ import { Header } from '@/components/layout/header';
 import { AuthProvider } from '@/hooks/use-auth';
 
 export const metadata: Metadata = {
-  title: 'PromiseWeb',
+  title: 'TrusTNet',
   description: 'A new way to make and keep promises.',
   manifest: '/manifest.json',
 };
