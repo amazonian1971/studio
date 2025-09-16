@@ -10,7 +10,7 @@ export default function SinglePromisePage({ params }: { params: { id: string } }
   }
 
   return (
-    <div className="container max-w-3xl py-8">
+    <div className="container max-w-4xl py-8">
       <PromiseCard promise={promise} />
     </div>
   );

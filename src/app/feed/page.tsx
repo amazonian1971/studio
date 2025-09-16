@@ -7,7 +7,7 @@ import { InviteFriends } from "@/components/invites/invite-friends";
 
 export default function FeedPage() {
   return (
-    <div className="container max-w-3xl py-8 space-y-8">
+    <div className="container max-w-4xl py-8 space-y-8">
       <InviteFriends />
       <PromiseFeed />
       <CreatePromiseButton />
