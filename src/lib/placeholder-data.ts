@@ -222,7 +222,7 @@ export const mockPromises: Promise[] = [
     author: mockUsers[0],
     deadline: new Date('2024-12-31T23:59:59'),
     category: 'Relationships',
-    tags: ['Family', 'Habits'],
+    tags: ['Habits'],
     createdAt: new Date('2024-07-01T10:00:00'),
     status: 'pending',
   },
