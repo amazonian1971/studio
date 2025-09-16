@@ -1,5 +1,5 @@
 
-import { सस्पेंस } from "react";
+import { Suspense } from "react";
 import {
   Card,
   CardContent,
