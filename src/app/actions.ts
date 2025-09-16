@@ -2,6 +2,7 @@
 
 import { getSmartTagSuggestions } from "@/ai/flows/smart-tag-suggestions"
 import { categories } from "@/lib/categories";
+import { getSuggestions } from "@/lib/firebase/admin";
 import { z } from "zod"
 
 const promiseSchema = z.object({
@@ -53,4 +54,8 @@ export async function suggestTagsAction(title: string, description: string) {
     console.error("Error getting smart tag suggestions:", error);
     return { relevantTags: [] };
   }
+}
+
+export async function getSuggestionsAction() {
+    return getSuggestions();
 }
