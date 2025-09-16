@@ -17,6 +17,7 @@ import { useToast } from "@/hooks/use-toast";
 import { signUp, signInWithGoogle } from "@/lib/firebase/client";
 import { Loader2 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import type { FirebaseError } from "firebase/app";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -58,11 +59,14 @@ export default function SignupPage() {
       });
       router.push("/feed");
     } catch (error: any) {
-      toast({
-        variant: "destructive",
-        title: "Sign-up failed",
-        description: error.message,
-      });
+      const firebaseError = error as FirebaseError;
+      if (firebaseError.code !== 'auth/popup-closed-by-user') {
+        toast({
+          variant: "destructive",
+          title: "Sign-up failed",
+          description: error.message,
+        });
+      }
     } finally {
       setGoogleLoading(false);
     }
