@@ -37,9 +37,9 @@ export function SuggestionCard({ suggestion }: SuggestionCardProps) {
   const userInitials = suggestion.user.name.split(" ").map((n) => n[0]).join("")
 
   return (
-    <Card className="w-full transition-shadow duration-300 hover:shadow-lg flex flex-col">
+    <Card className="w-full transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] hover:scale-105 hover:border-primary/50 flex flex-col">
       <CardHeader className="items-center text-center">
-        <Avatar className="h-20 w-20 mb-2">
+        <Avatar className="h-20 w-20 mb-2 border-2 border-primary/50">
           <AvatarImage src={suggestion.user.avatarUrl} alt={suggestion.user.name} data-ai-hint="person portrait"/>
           <AvatarFallback className="text-3xl">{userInitials}</AvatarFallback>
         </Avatar>

@@ -63,7 +63,7 @@ export function PromiseCard({ promise }: PromiseCardProps) {
   const authorInitials = promise.author.name.split(" ").map((n) => n[0]).join("")
 
   return (
-    <Card className="w-full transition-shadow duration-300 hover:shadow-lg">
+    <Card className="w-full transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] hover:scale-105 hover:border-primary/50">
       <CardHeader>
         <div className="flex items-center space-x-4">
           <Avatar>
