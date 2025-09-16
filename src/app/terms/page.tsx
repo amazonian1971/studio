@@ -7,6 +7,7 @@ export default function TermsAndConditionsPage() {
     const [lastUpdated, setLastUpdated] = useState("");
 
     useEffect(() => {
+        // This ensures the date is only rendered on the client, avoiding hydration mismatch.
         setLastUpdated(new Date().toLocaleDateString());
     }, []);
 
@@ -33,9 +34,7 @@ export default function TermsAndConditionsPage() {
           <p>
             In no event shall TrusTNet, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.
           </p>
-           <p>
-            Last Updated: {lastUpdated}
-          </p>
+           {lastUpdated && <p>Last Updated: {lastUpdated}</p>}
         </CardContent>
       </Card>
     </div>

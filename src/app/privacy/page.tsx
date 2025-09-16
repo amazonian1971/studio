@@ -7,6 +7,7 @@ export default function PrivacyPolicyPage() {
   const [lastUpdated, setLastUpdated] = useState("");
 
   useEffect(() => {
+    // This ensures the date is only rendered on the client, avoiding hydration mismatch.
     setLastUpdated(new Date().toLocaleDateString());
   }, []);
 
@@ -33,9 +34,7 @@ export default function PrivacyPolicyPage() {
           <p>
             You may review, update, or delete information in your account at any time by logging into your account settings.
           </p>
-          <p>
-            Last Updated: {lastUpdated}
-          </p>
+          {lastUpdated && <p>Last Updated: {lastUpdated}</p>}
         </CardContent>
       </Card>
     </div>
