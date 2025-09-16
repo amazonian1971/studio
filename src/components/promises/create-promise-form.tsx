@@ -36,6 +36,7 @@ import { useTransition } from "react"
 import { useToast } from "@/hooks/use-toast"
 import { Badge } from "../ui/badge"
 import { SmartTagger } from "./smart-tagger"
+import { categories } from "@/lib/categories"
 
 const formSchema = z.object({
   title: z.string().min(5, {
@@ -196,15 +197,9 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="Work">Work</SelectItem>
-                    <SelectItem value="Personal Growth">
-                      Personal Growth
-                    </SelectItem>
-                    <SelectItem value="Health & Fitness">
-                      Health & Fitness
-                    </SelectItem>
-                    <SelectItem value="Learning">Learning</SelectItem>
-                    <SelectItem value="Social">Social</SelectItem>
+                    {Object.keys(categories).map((category) => (
+                      <SelectItem key={category} value={category}>{category}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <FormMessage />

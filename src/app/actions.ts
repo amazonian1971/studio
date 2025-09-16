@@ -1,6 +1,7 @@
 "use server"
 
 import { getSmartTagSuggestions } from "@/ai/flows/smart-tag-suggestions"
+import { categories } from "@/lib/categories";
 import { z } from "zod"
 
 const promiseSchema = z.object({
@@ -39,10 +40,7 @@ export async function suggestTagsAction(title: string, description: string) {
   }
   
   // A predefined list of possible tags to help guide the AI
-  const autoSuggestedTags = [
-    "work", "personal", "health", "finance", "learning", "project", 
-    "team", "urgent", "planning", "fitness", "home", "family", "social"
-  ];
+  const autoSuggestedTags = Object.values(categories).flat();
 
   try {
     const result = await getSmartTagSuggestions({
