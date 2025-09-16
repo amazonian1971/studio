@@ -1,7 +1,15 @@
+"use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useEffect, useState } from "react";
 
 export default function TermsAndConditionsPage() {
+    const [lastUpdated, setLastUpdated] = useState("");
+
+    useEffect(() => {
+        setLastUpdated(new Date().toLocaleDateString());
+    }, []);
+
   return (
     <div className="container max-w-4xl py-8">
       <Card>
@@ -26,7 +34,7 @@ export default function TermsAndConditionsPage() {
             In no event shall TrusTNet, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.
           </p>
            <p>
-            Last Updated: {new Date().toLocaleDateString()}
+            Last Updated: {lastUpdated}
           </p>
         </CardContent>
       </Card>

@@ -7,9 +7,13 @@ import { Header } from '@/components/layout/header';
 import { AuthProvider } from '@/hooks/use-auth';
 
 export const metadata: Metadata = {
-  title: 'TrusTNet',
-  description: 'A new way to make and keep promises.',
+  title: 'TrusTNet - Make & Keep Promises',
+  description: 'Join TrusTNet to make public promises, track your goals, and build accountability. A social network for commitment and trust.',
   manifest: '/manifest.json',
+  keywords: ['promise', 'trust', 'accountability', 'goals', 'social network', 'commitment', 'personal growth'],
+  icons: {
+    apple: "/apple-touch-icon.png",
+  }
 };
 
 export default function RootLayout({

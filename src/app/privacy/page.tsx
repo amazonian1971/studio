@@ -1,7 +1,15 @@
+"use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useEffect, useState } from "react";
 
 export default function PrivacyPolicyPage() {
+  const [lastUpdated, setLastUpdated] = useState("");
+
+  useEffect(() => {
+    setLastUpdated(new Date().toLocaleDateString());
+  }, []);
+
   return (
     <div className="container max-w-4xl py-8">
       <Card>
@@ -26,7 +34,7 @@ export default function PrivacyPolicyPage() {
             You may review, update, or delete information in your account at any time by logging into your account settings.
           </p>
           <p>
-            Last Updated: {new Date().toLocaleDateString()}
+            Last Updated: {lastUpdated}
           </p>
         </CardContent>
       </Card>
