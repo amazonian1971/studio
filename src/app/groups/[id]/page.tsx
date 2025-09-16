@@ -1,10 +1,11 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { PromiseCard } from "@/components/promises/promise-card";
 import { mockGroups, mockPromises, mockUsers } from "@/lib/placeholder-data";
-import { Lock, Settings, UserPlus, Users } from "lucide-react";
+import { ArrowLeft, Lock, Settings, UserPlus, Users } from "lucide-react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export default function SingleGroupPage({ params }: { params: { id: string } }) {
@@ -18,6 +19,14 @@ export default function SingleGroupPage({ params }: { params: { id: string } }) 
 
   return (
     <div className="container max-w-4xl py-8">
+      <div className="mb-6">
+        <Button asChild variant="ghost" className="mb-4">
+          <Link href="/groups">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to All Groups
+          </Link>
+        </Button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-6">
            <div className="flex justify-between items-start">

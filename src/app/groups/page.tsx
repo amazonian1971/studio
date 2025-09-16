@@ -3,12 +3,20 @@ import { mockGroups } from "@/lib/placeholder-data";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Lock, Users } from "lucide-react";
+import { ArrowLeft, Lock, Users } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function GroupsPage() {
   return (
     <div className="container max-w-4xl py-8">
+       <div className="mb-6">
+          <Button asChild variant="ghost" className="mb-4">
+              <Link href="/feed">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Feed
+              </Link>
+          </Button>
+        </div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Groups</h1>
         <Button>Create Group</Button>
