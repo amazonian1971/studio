@@ -1,10 +1,13 @@
+"use client";
+
 import { UserNav } from "@/components/layout/user-nav"
-import { Handshake } from "lucide-react"
+import { Handshake, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { Button } from "../ui/button"
+import { useAuth } from "@/hooks/use-auth";
 
 export function Header() {
-  const user = null; // Replace with actual user check
+  const { user, loading } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -18,7 +21,9 @@ export function Header() {
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-4">
-          { user ? (
+          { loading ? (
+            <Loader2 className="h-6 w-6 animate-spin" />
+          ) : user ? (
             <UserNav />
           ) : (
             <div className="flex items-center gap-2">
