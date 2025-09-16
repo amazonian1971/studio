@@ -13,4 +13,13 @@ export interface Promise {
   category: string;
   tags: string[];
   createdAt: Date;
+  groupId?: string;
+}
+
+export interface Group {
+  id: string;
+  name: string;
+  description: string;
+  isPublic: boolean;
+  members: User[];
 }

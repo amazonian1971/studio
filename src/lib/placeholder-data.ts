@@ -1,10 +1,34 @@
-import type { User, Promise } from '@/lib/types';
+import type { User, Promise, Group } from '@/lib/types';
 
 export const mockUsers: User[] = [
   { id: 'user-1', name: 'Alice Johnson', avatarUrl: 'https://picsum.photos/seed/1/200/200' },
   { id: 'user-2', name: 'Bob Williams', avatarUrl: 'https://picsum.photos/seed/2/200/200' },
   { id: 'user-3', name: 'Charlie Brown', avatarUrl: 'https://picsum.photos/seed/3/200/200' },
   { id: 'user-4', name: 'Diana Miller', avatarUrl: 'https://picsum.photos/seed/4/200/200' },
+];
+
+export const mockGroups: Group[] = [
+  {
+    id: 'group-1',
+    name: 'Weekend Warriors',
+    description: 'A group for people who want to achieve their fitness goals over the weekend.',
+    isPublic: true,
+    members: [mockUsers[0], mockUsers[1], mockUsers[2]],
+  },
+  {
+    id: 'group-2',
+    name: 'Book Club',
+    description: 'A private group for our weekly book discussions.',
+    isPublic: false,
+    members: [mockUsers[1], mockUsers[3]],
+  },
+  {
+    id: 'group-3',
+    name: 'Coders Anonymous',
+    description: 'A public group for developers to share their side projects and get feedback.',
+    isPublic: true,
+    members: [mockUsers[0], mockUsers[2], mockUsers[3]],
+  },
 ];
 
 export const mockPromises: Promise[] = [
@@ -27,6 +51,7 @@ export const mockPromises: Promise[] = [
     category: 'Personal Growth',
     tags: ['fitness', 'running', 'health'],
     createdAt: new Date('2024-07-21T11:30:00'),
+    groupId: 'group-1',
   },
   {
     id: 'promise-3',
@@ -37,6 +62,7 @@ export const mockPromises: Promise[] = [
     category: 'Learning',
     tags: ['programming', 'react-native', 'mobile-dev', 'learning'],
     createdAt: new Date('2024-07-22T14:00:00'),
+    groupId: 'group-3',
   },
   {
     id: 'promise-4',
@@ -47,5 +73,16 @@ export const mockPromises: Promise[] = [
     category: 'Social',
     tags: ['event', 'party', 'friends'],
     createdAt: new Date('2024-07-22T18:45:00'),
+  },
+   {
+    id: 'promise-5',
+    title: 'Read "Dune" by Frank Herbert',
+    description: 'I promise to read the entire first book of the Dune series.',
+    author: mockUsers[1],
+    deadline: new Date('2024-09-01T23:59:59'),
+    category: 'Reading',
+    tags: ['books', 'sci-fi'],
+    createdAt: new Date('2024-07-25T16:00:00'),
+    groupId: 'group-2',
   },
 ];

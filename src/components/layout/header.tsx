@@ -1,10 +1,17 @@
 "use client";
 
 import { UserNav } from "@/components/layout/user-nav"
-import { Handshake, Loader2 } from "lucide-react"
+import { Handshake, Loader2, Users } from "lucide-react"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { useAuth } from "@/hooks/use-auth";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
 
 export function Header() {
   const { user, loading } = useAuth();
@@ -19,6 +26,27 @@ export function Header() {
               PromiseWeb
             </span>
           </Link>
+          { user && (
+            <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link href="/feed" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Feed
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/groups" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <Users className="mr-2 h-4 w-4" />
+                    Groups
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+          )}
         </div>
         <div className="flex flex-1 items-center justify-end space-x-4">
           { loading ? (
