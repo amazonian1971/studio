@@ -18,7 +18,7 @@ export default function ProfilePage() {
         }
     }, [user, loading, router]);
     
-    if (loading || !user) {
+    if (loading || !user || !userData) {
         return (
             <div className="flex min-h-screen items-center justify-center">
                 <Loader2 className="h-16 w-16 animate-spin" />
@@ -26,15 +26,6 @@ export default function ProfilePage() {
         );
     }
     
-    // This can happen if the user doc hasn't been created yet
-    if (!userData) {
-      return (
-        <div className="flex min-h-screen items-center justify-center">
-          <p>Could not load user data. Please try again later.</p>
-        </div>
-      );
-    }
-
     const userInitials = userData.name?.split(" ").map((n:string) => n[0]).join("") || "";
     // Mock promise data for now
     const promisesMade = 12;
@@ -81,4 +72,5 @@ export default function ProfilePage() {
         </div>
     );
 }
+
 

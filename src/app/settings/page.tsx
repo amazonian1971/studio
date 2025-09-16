@@ -25,7 +25,6 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Loader2 } from "lucide-react"
@@ -61,7 +60,7 @@ export default function SettingsPage() {
     }
   }
 
-  if (loading || !user) {
+  if (loading || !user || !userData) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <Loader2 className="h-16 w-16 animate-spin" />
@@ -126,7 +125,14 @@ export default function SettingsPage() {
                     <div className="space-y-2">
                         <Label>Theme</Label>
                         <p className="text-sm text-muted-foreground">Select a theme for the application.</p>
-                         <ThemeToggle />
+                         <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="outline">Change Theme</Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent>
+                            <ThemeToggle />
+                          </DropdownMenuContent>
+                        </DropdownMenu>
                   </div>
                 </CardContent>
               </Card>

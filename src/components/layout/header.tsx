@@ -14,10 +14,16 @@ import {
 } from "@/components/ui/navigation-menu"
 import { mockNotifications } from "@/lib/placeholder-data";
 import { Badge } from "../ui/badge";
+import { useState, useEffect } from "react";
 
 export function Header() {
   const { user, loading } = useAuth();
-  const unreadCount = mockNotifications.filter(n => !n.isRead).length;
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useEffect(() => {
+    // This logic is client-side only to prevent SSR issues.
+    setUnreadCount(mockNotifications.filter(n => !n.isRead).length);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
