@@ -1,3 +1,4 @@
+
 import type { User, Promise, Group, Notification } from '@/lib/types';
 
 export const mockUsers: User[] = [
@@ -50,7 +51,6 @@ export const mockGroups: Group[] = [
     description: 'A private group for family events and staying in touch.',
     isPublic: false,
     members: [mockUsers[0], mockUsers[4], mockUsers[8]],
-_
   },
   {
     id: 'group-6',

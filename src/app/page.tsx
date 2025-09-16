@@ -41,7 +41,7 @@ export default function WelcomePage() {
     PlaceHolderImages.find((img) => img.id === 'user-3'),
     PlaceHolderImages.find((img) => img.id === 'user-4'),
     PlaceHolderImages.find((img) => img.id === 'user-5'),
-  ];
+  ].filter((user): user is NonNullable<typeof user> => !!user);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -75,8 +75,8 @@ export default function WelcomePage() {
               How It Works
             </h2>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {features.map((feature, index) => (
-                <Card key={index}>
+              {features.map((feature) => (
+                <Card key={feature.title}>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
                     <p className="text-muted-foreground">
@@ -102,20 +102,18 @@ export default function WelcomePage() {
               PromiseWeb.
             </p>
             <div className="flex justify-center items-center -space-x-2">
-              {socialProof.map((user, index) =>
-                user ? (
-                  <Image
-                    key={index}
-                    src={user.imageUrl}
-                    alt={user.description}
-                    width={48}
-                    height={48}
-                    className="rounded-full border-2 border-background"
-                    style={{ zIndex: socialProof.length - index }}
-                    data-ai-hint={user.imageHint}
-                  />
-                ) : null
-              )}
+              {socialProof.map((user, index) => (
+                <Image
+                  key={user.id}
+                  src={user.imageUrl}
+                  alt={user.description}
+                  width={48}
+                  height={48}
+                  className="rounded-full border-2 border-background"
+                  style={{ zIndex: socialProof.length - index }}
+                  data-ai-hint={user.imageHint}
+                />
+              ))}
             </div>
           </div>
         </section>
