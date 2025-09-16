@@ -1,3 +1,4 @@
+
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -29,14 +30,15 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { cn } from "@/lib/utils"
-import { CalendarIcon, Loader2 } from "lucide-react"
+import { CalendarIcon, Loader2, Image as ImageIcon, X } from "lucide-react"
 import { format } from "date-fns"
 import { createPromiseAction } from "@/app/actions"
-import { useTransition } from "react"
+import { useTransition, useState } from "react"
 import { useToast } from "@/hooks/use-toast"
 import { Badge } from "../ui/badge"
 import { SmartTagger } from "./smart-tagger"
 import { categories } from "@/lib/categories"
+import Image from "next/image"
 
 const formSchema = z.object({
   title: z.string().min(5, {
@@ -52,11 +54,13 @@ const formSchema = z.object({
     required_error: "Please select a category.",
   }),
   tags: z.array(z.string()).optional(),
+  images: z.custom<File[]>().optional(),
 })
 
 export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => void }) {
   const [isPending, startTransition] = useTransition()
   const { toast } = useToast()
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -64,11 +68,33 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
       title: "",
       description: "",
       tags: [],
+      images: [],
     },
   })
 
   const watchTitle = form.watch("title");
   const watchDescription = form.watch("description");
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+      const newFiles = Array.from(files);
+      form.setValue("images", [...(form.getValues("images") || []), ...newFiles]);
+
+      const newPreviews = newFiles.map(file => URL.createObjectURL(file));
+      setImagePreviews(prev => [...prev, ...newPreviews]);
+    }
+  };
+
+  const removeImage = (index: number) => {
+    const currentImages = form.getValues("images") || [];
+    const updatedImages = currentImages.filter((_, i) => i !== index);
+    form.setValue("images", updatedImages);
+
+    const updatedPreviews = imagePreviews.filter((_, i) => i !== index);
+    setImagePreviews(updatedPreviews);
+  };
+
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const formData = new FormData()
@@ -77,6 +103,9 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
     formData.append("deadline", values.deadline.toISOString())
     formData.append("category", values.category)
     formData.append("tags", (values.tags ?? []).join(","))
+    // NOTE: In a real app, you'd upload images to a service like Firebase Storage
+    // and then pass the URLs. For now, we're not uploading.
+    console.log("Images to upload: ", values.images);
 
     startTransition(async () => {
       const result = await createPromiseAction(formData)
@@ -207,6 +236,43 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
             )}
           />
         </div>
+        <FormField
+          control={form.control}
+          name="images"
+          render={() => (
+            <FormItem>
+                <FormLabel>Add Images</FormLabel>
+                <FormControl>
+                   <Input type="file" multiple onChange={handleImageChange} accept="image/*" className="cursor-pointer"/>
+                </FormControl>
+                 {imagePreviews.length > 0 && (
+                  <div className="mt-4 grid grid-cols-3 gap-4">
+                    {imagePreviews.map((src, index) => (
+                      <div key={index} className="relative">
+                        <Image
+                          src={src}
+                          alt={`Preview ${index + 1}`}
+                          width={150}
+                          height={150}
+                          className="rounded-md object-cover w-full aspect-square"
+                        />
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="icon"
+                          className="absolute top-1 right-1 h-6 w-6"
+                          onClick={() => removeImage(index)}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="tags"

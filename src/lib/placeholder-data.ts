@@ -1,4 +1,5 @@
 
+
 import type { User, Promise, Group, Notification, UserSuggestion } from '@/lib/types';
 
 export const mockUsers: User[] = [
@@ -23,6 +24,7 @@ export const mockGroups: Group[] = [
     description: 'A group for the members of the Project Phoenix to coordinate tasks and deadlines.',
     isPublic: false,
     members: [mockUsers[0], mockUsers[2], mockUsers[4]],
+    createdAt: new Date(),
   },
   {
     id: 'group-2',
@@ -30,6 +32,7 @@ export const mockGroups: Group[] = [
     description: 'A public group for anyone interested in fitness, exercise, and healthy living.',
     isPublic: true,
     members: [mockUsers[1], mockUsers[5], mockUsers[8], mockUsers[10]],
+    createdAt: new Date(),
   },
   {
     id: 'group-3',
@@ -37,6 +40,7 @@ export const mockGroups: Group[] = [
     description: 'A private group for discussing investment strategies and market trends.',
     isPublic: false,
     members: [mockUsers[3], mockUsers[6], mockUsers[9]],
+    createdAt: new Date(),
   },
   {
     id: 'group-4',
@@ -44,6 +48,7 @@ export const mockGroups: Group[] = [
     description: 'A public group for avid readers to discuss books and share recommendations.',
     isPublic: true,
     members: [mockUsers[1], mockUsers[7], mockUsers[11]],
+    createdAt: new Date(),
   },
   {
     id: 'group-5',
@@ -51,6 +56,7 @@ export const mockGroups: Group[] = [
     description: 'A private group for family events and staying in touch.',
     isPublic: false,
     members: [mockUsers[0], mockUsers[4], mockUsers[8]],
+    createdAt: new Date(),
   },
   {
     id: 'group-6',
@@ -58,6 +64,7 @@ export const mockGroups: Group[] = [
     description: 'A group for developers looking to improve their skills through challenges.',
     isPublic: true,
     members: [mockUsers[2], mockUsers[6], mockUsers[10]],
+    createdAt: new Date(),
   },
    {
     id: 'group-7',
@@ -65,6 +72,7 @@ export const mockGroups: Group[] = [
     description: 'Sharing travel plans, tips, and stories from around the world.',
     isPublic: true,
     members: [mockUsers[3], mockUsers[5], mockUsers[9], mockUsers[11]],
+    createdAt: new Date(),
   },
   {
     id: 'group-8',
@@ -72,6 +80,7 @@ export const mockGroups: Group[] = [
     description: 'Coordinating local volunteering efforts and community service projects.',
     isPublic: true,
     members: [mockUsers[0], mockUsers[7], mockUsers[10]],
+    createdAt: new Date(),
   },
 ];
 
@@ -115,6 +124,7 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-07-21T11:30:00'),
     groupId: 'group-2',
     status: 'pending',
+    imageURLs: ['https://picsum.photos/seed/101/600/400']
   },
   {
     id: 'promise-4',
@@ -203,6 +213,7 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-07-22T18:45:00'),
     groupId: 'group-5',
     status: 'pending',
+    imageURLs: ['https://picsum.photos/seed/102/600/400', 'https://picsum.photos/seed/103/600/400']
   },
   {
     id: 'promise-11',

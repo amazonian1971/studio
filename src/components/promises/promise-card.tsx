@@ -1,3 +1,4 @@
+
 "use client"
 
 import type { Promise } from "@/lib/types"
@@ -12,9 +13,17 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, Share2 } from "lucide-react"
+import { Calendar, Share2, ChevronLeft, ChevronRight } from "lucide-react"
 import { format, formatDistanceToNow } from "date-fns"
 import { useToast } from "@/hooks/use-toast"
+import Image from "next/image"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 interface PromiseCardProps {
   promise: Promise
@@ -51,6 +60,31 @@ export function PromiseCard({ promise }: PromiseCardProps) {
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
+        {promise.imageURLs && promise.imageURLs.length > 0 && (
+          <Carousel className="w-full rounded-lg overflow-hidden">
+            <CarouselContent>
+              {promise.imageURLs.map((url, index) => (
+                <CarouselItem key={index}>
+                  <div className="relative aspect-video">
+                    <Image
+                      src={url}
+                      alt={`Promise image ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      data-ai-hint="promise image"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            {promise.imageURLs.length > 1 && (
+              <>
+                <CarouselPrevious className="left-2" />
+                <CarouselNext className="right-2" />
+              </>
+            )}
+          </Carousel>
+        )}
         <CardTitle className="text-xl font-headline">{promise.title}</CardTitle>
         <CardDescription>{promise.description}</CardDescription>
         <div className="flex items-center text-sm text-muted-foreground">

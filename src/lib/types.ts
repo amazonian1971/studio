@@ -30,6 +30,7 @@ export interface Group {
   description: string;
   isPublic: boolean;
   members: User[];
+  createdAt: Date;
 }
 
 export interface Notification {
