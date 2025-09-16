@@ -1,11 +1,21 @@
+
+"use client";
+
 import { Handshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useState, useEffect } from 'react';
 
 export default function WelcomePage() {
+  const [year, setYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   const features = [
     {
       title: 'Make Public Promises',
@@ -112,7 +122,7 @@ export default function WelcomePage() {
       </main>
       <footer className="py-6 border-t">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} PromiseWeb. All rights reserved.
+          © {year} PromiseWeb. All rights reserved.
         </div>
       </footer>
     </div>
