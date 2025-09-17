@@ -9,6 +9,20 @@ module.exports = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
+  safelist: [
+    ...[
+      "from-yellow-400", "to-orange-500",
+      "from-orange-500", "to-red-600",
+      "from-blue-400", "to-teal-500",
+      "from-green-400", "to-green-600",
+      "from-purple-500", "to-indigo-600",
+      "from-red-500", "to-pink-600",
+      "from-blue-300", "to-sky-400",
+      "from-green-200", "to-teal-300",
+      "from-purple-400", "to-violet-500",
+      "from-gray-700", "via-gray-900", "to-black",
+    ].map(cls => `bg-gradient-to-br ${cls}`),
+  ],
   theme: {
     container: {
       center: true,

@@ -1,6 +1,7 @@
 
 
 import type { User, Promise, Group, Notification, UserSuggestion } from '@/lib/types';
+import { promiseColors } from './promise-colors';
 
 export const mockUsers: User[] = [
   { id: 'user-1', name: 'Alice Johnson', email: 'alice@example.com', avatarUrl: 'https://picsum.photos/seed/1/200/200', createdAt: new Date() },
@@ -98,6 +99,7 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-07-20T10:00:00'),
     groupId: 'group-1',
     status: 'pending',
+    colorTheme: promiseColors[0].className,
   },
   {
     id: 'promise-2',
@@ -110,6 +112,7 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-08-01T14:30:00'),
     groupId: 'group-1',
     status: 'pending',
+    colorTheme: promiseColors[1].className,
   },
 
   // Health
@@ -124,7 +127,8 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-07-21T11:30:00'),
     groupId: 'group-2',
     status: 'pending',
-    imageURLs: ['https://picsum.photos/seed/101/600/400']
+    imageURLs: ['https://picsum.photos/seed/101/600/400'],
+    colorTheme: promiseColors[2].className,
   },
   {
     id: 'promise-4',
@@ -137,6 +141,7 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-07-28T09:00:00'),
     groupId: 'group-2',
     status: 'kept',
+    colorTheme: promiseColors[3].className,
   },
    {
     id: 'promise-5',
@@ -148,6 +153,7 @@ export const mockPromises: Promise[] = [
     tags: ['Diet', 'Challenges'],
     createdAt: new Date('2024-08-01T12:00:00'),
     status: 'broken',
+    colorTheme: promiseColors[4].className,
   },
 
   // Finance
@@ -161,6 +167,7 @@ export const mockPromises: Promise[] = [
     tags: ['Savings', 'Bills'],
     createdAt: new Date('2024-07-25T18:00:00'),
     status: 'pending',
+    colorTheme: promiseColors[5].className,
   },
   {
     id: 'promise-7',
@@ -173,6 +180,7 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-07-29T20:00:00'),
     groupId: 'group-3',
     status: 'pending',
+    colorTheme: promiseColors[6].className,
   },
 
   // Education
@@ -187,6 +195,7 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-07-15T16:00:00'),
     groupId: 'group-6',
     status: 'kept',
+    colorTheme: promiseColors[7].className,
   },
   {
     id: 'promise-9',
@@ -199,6 +208,7 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-07-25T16:00:00'),
     groupId: 'group-4',
     status: 'pending',
+    colorTheme: promiseColors[8].className,
   },
 
   // Relationships
@@ -213,7 +223,8 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-07-22T18:45:00'),
     groupId: 'group-5',
     status: 'pending',
-    imageURLs: ['https://picsum.photos/seed/102/600/400', 'https://picsum.photos/seed/103/600/400']
+    imageURLs: ['https://picsum.photos/seed/102/600/400', 'https://picsum.photos/seed/103/600/400'],
+    colorTheme: promiseColors[9].className,
   },
   {
     id: 'promise-11',
@@ -225,6 +236,7 @@ export const mockPromises: Promise[] = [
     tags: ['Habits'],
     createdAt: new Date('2024-07-01T10:00:00'),
     status: 'pending',
+    colorTheme: promiseColors[0].className,
   },
 
   // Personal Growth
@@ -239,6 +251,7 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-07-22T14:00:00'),
     groupId: 'group-6',
     status: 'pending',
+    colorTheme: promiseColors[1].className,
   },
   {
     id: 'promise-13',
@@ -250,6 +263,7 @@ export const mockPromises: Promise[] = [
     tags: ['Journaling', 'Habits'],
     createdAt: new Date('2024-07-31T21:00:00'),
     status: 'pending',
+    colorTheme: promiseColors[2].className,
   },
   
   // Travel
@@ -264,6 +278,7 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-08-01T19:00:00'),
     groupId: 'group-7',
     status: 'pending',
+    colorTheme: promiseColors[3].className,
   },
   {
     id: 'promise-15',
@@ -275,6 +290,7 @@ export const mockPromises: Promise[] = [
     tags: ['Packing', 'Trips'],
     createdAt: new Date('2024-08-07T11:00:00'),
     status: 'kept',
+    colorTheme: promiseColors[4].className,
   },
   
   // Events
@@ -288,6 +304,7 @@ export const mockPromises: Promise[] = [
     tags: ['Concerts', 'Tickets'],
     createdAt: new Date('2024-08-02T13:00:00'),
     status: 'kept',
+    colorTheme: promiseColors[5].className,
   },
   
   // Community
@@ -302,6 +319,7 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-08-03T15:00:00'),
     groupId: 'group-8',
     status: 'pending',
+    colorTheme: promiseColors[6].className,
   },
   {
     id: 'promise-18',
@@ -314,6 +332,7 @@ export const mockPromises: Promise[] = [
     createdAt: new Date('2024-08-04T12:00:00'),
     groupId: 'group-8',
     status: 'pending',
+    colorTheme: promiseColors[7].className,
   },
 ];
 

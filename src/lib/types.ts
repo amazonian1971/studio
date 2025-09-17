@@ -22,6 +22,7 @@ export interface Promise {
   attachments?: string[];
   imageURLs?: string[];
   status?: 'pending' | 'kept' | 'broken';
+  colorTheme?: string;
 }
 
 export interface Group {

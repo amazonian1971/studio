@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -30,7 +31,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { cn } from "@/lib/utils"
-import { CalendarIcon, Loader2, Image as ImageIcon, X } from "lucide-react"
+import { CalendarIcon, Loader2, Image as ImageIcon, X, Check } from "lucide-react"
 import { format } from "date-fns"
 import { createPromiseAction } from "@/app/actions"
 import { useTransition, useState } from "react"
@@ -39,6 +40,7 @@ import { Badge } from "../ui/badge"
 import { SmartTagger } from "./smart-tagger"
 import { categories } from "@/lib/categories"
 import Image from "next/image"
+import { promiseColors } from "@/lib/promise-colors"
 
 const formSchema = z.object({
   title: z.string().min(5, {
@@ -55,6 +57,7 @@ const formSchema = z.object({
   }),
   tags: z.array(z.string()).optional(),
   images: z.custom<File[]>().optional(),
+  colorTheme: z.string().optional(),
 })
 
 export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => void }) {
@@ -69,11 +72,13 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
       description: "",
       tags: [],
       images: [],
+      colorTheme: promiseColors[0].className,
     },
   })
 
   const watchTitle = form.watch("title");
   const watchDescription = form.watch("description");
+  const watchColorTheme = form.watch("colorTheme");
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -236,6 +241,33 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
             )}
           />
         </div>
+         <FormField
+          control={form.control}
+          name="colorTheme"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="font-headline">Card Color</FormLabel>
+              <FormControl>
+                <div className="grid grid-cols-5 gap-2">
+                  {promiseColors.map((color) => (
+                    <button
+                      key={color.name}
+                      type="button"
+                      className={cn(
+                        "h-12 w-full rounded-md transition-all",
+                        color.className
+                      )}
+                      onClick={() => field.onChange(color.className)}
+                    >
+                      {watchColorTheme === color.className && <Check className="h-6 w-6 text-white mx-auto" />}
+                    </button>
+                  ))}
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="images"

@@ -31,6 +31,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { cn } from "@/lib/utils"
+import { promiseColors } from "@/lib/promise-colors"
 
 interface PromiseCardProps {
   promise: Promise
@@ -61,9 +63,15 @@ export function PromiseCard({ promise }: PromiseCardProps) {
   }
 
   const authorInitials = promise.author.name.split(" ").map((n) => n[0]).join("")
+  const cardColor = promise.colorTheme || promiseColors[0].className;
+
 
   return (
-    <Card className="w-full transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] hover:scale-105 hover:border-primary/50">
+    <Card className={cn(
+      "w-full transition-all duration-300 hover:scale-105 text-white",
+      cardColor
+      )}>
+      <div className="bg-black/20 backdrop-blur-sm rounded-lg h-full flex flex-col">
       <CardHeader>
         <div className="flex items-center space-x-4">
           <Avatar>
@@ -72,13 +80,13 @@ export function PromiseCard({ promise }: PromiseCardProps) {
           </Avatar>
           <div>
             <p className="font-semibold">{promise.author.name}</p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-gray-300">
               {formatDistanceToNow(promise.createdAt, { addSuffix: true })}
             </p>
           </div>
         </div>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 flex-grow">
         {promise.imageURLs && promise.imageURLs.length > 0 && (
           <Carousel className="w-full rounded-lg overflow-hidden">
             <CarouselContent>
@@ -105,28 +113,28 @@ export function PromiseCard({ promise }: PromiseCardProps) {
           </Carousel>
         )}
         <CardTitle className="text-xl font-headline">{promise.title}</CardTitle>
-        <CardDescription>{promise.description}</CardDescription>
-        <div className="flex items-center text-sm text-muted-foreground">
+        <CardDescription className="text-gray-200">{promise.description}</CardDescription>
+        <div className="flex items-center text-sm text-gray-300">
           <Calendar className="mr-2 h-4 w-4" />
           <span>Deadline: {format(promise.deadline, "PPP")}</span>
         </div>
         <div className="flex flex-wrap gap-2">
           {promise.tags.map((tag) => (
-            <Badge key={tag} variant="secondary">
+            <Badge key={tag} variant="secondary" className="bg-white/20 text-white border-none">
               #{tag}
             </Badge>
           ))}
-           <Badge variant="outline">{promise.category}</Badge>
+           <Badge variant="outline" className="bg-transparent border-white/50 text-white">{promise.category}</Badge>
         </div>
       </CardContent>
       <CardFooter className="flex items-center justify-start gap-2">
-        <Button variant="ghost" size="sm" onClick={handleReply}>
+        <Button variant="ghost" size="sm" onClick={handleReply} className="text-white hover:bg-white/10 hover:text-white">
             <MessageSquare className="mr-2 h-4 w-4" />
             Reply
         </Button>
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" size="sm" className="text-white hover:bg-white/10 hover:text-white">
                   <Share2 className="mr-2 h-4 w-4" />
                   Share
                 </Button>
@@ -151,6 +159,7 @@ export function PromiseCard({ promise }: PromiseCardProps) {
             </DropdownMenuContent>
         </DropdownMenu>
       </CardFooter>
+      </div>
     </Card>
   )
 }
