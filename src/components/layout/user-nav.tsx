@@ -14,14 +14,17 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useAuth } from "@/hooks/use-auth"
 import { logOut } from "@/lib/firebase/client"
-import { LogOut, Settings, User as UserIcon, Loader2 } from "lucide-react"
+import { LogOut, Settings, User as UserIcon, Loader2, BookOpen } from "lucide-react"
 import { ThemeToggle } from "../theme-toggle"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { Tour } from "../tour/tour"
 
 export function UserNav() {
   const { user, userData, loading } = useAuth();
   const router = useRouter();
+  const [isTourOpen, setTourOpen] = useState(false);
 
   const handleLogout = async () => {
     await logOut();
@@ -42,6 +45,7 @@ export function UserNav() {
     .join("") || "";
 
   return (
+    <>
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
@@ -74,6 +78,10 @@ export function UserNav() {
               <span>Settings</span>
             </DropdownMenuItem>
           </Link>
+           <DropdownMenuItem onClick={() => setTourOpen(true)}>
+              <BookOpen className="mr-2 h-4 w-4" />
+              <span>Take a Tour</span>
+            </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
@@ -86,5 +94,7 @@ export function UserNav() {
           </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
+    <Tour isOpen={isTourOpen} onOpenChange={setTourOpen} />
+    </>
   )
 }
