@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -78,7 +79,7 @@ export default function LoginPage() {
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Welcome back! Ready to keep your promises and build your web of trust? Your dashboard awaits.
           </CardDescription>
         </CardHeader>
         <CardContent>

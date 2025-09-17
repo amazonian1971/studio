@@ -18,7 +18,7 @@ export default function SignupPage() {
         <CardHeader>
           <CardTitle className="text-xl">Sign Up</CardTitle>
           <CardDescription>
-            Enter your information to create an account
+            Join a community built on trust. Start making promises, achieving your goals, and inspiring others today.
           </CardDescription>
         </CardHeader>
         <CardContent>
