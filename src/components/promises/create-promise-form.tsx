@@ -143,7 +143,7 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Promise Title</FormLabel>
+              <FormLabel className="font-headline">Promise Title</FormLabel>
               <FormControl>
                 <Input placeholder="e.g., Run a 5k marathon by December" {...field} />
               </FormControl>
@@ -156,7 +156,7 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel className="font-headline">Description</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Tell us more about your promise..."
@@ -174,7 +174,7 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
             name="deadline"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel>Deadline</FormLabel>
+                <FormLabel className="font-headline">Deadline</FormLabel>
                 <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>
@@ -215,7 +215,7 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
             name="category"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Category</FormLabel>
+                <FormLabel className="font-headline">Category</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -241,7 +241,7 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
           name="images"
           render={() => (
             <FormItem>
-                <FormLabel>Add Images</FormLabel>
+                <FormLabel className="font-headline">Add Images</FormLabel>
                 <FormControl>
                    <Input type="file" multiple onChange={handleImageChange} accept="image/*" className="cursor-pointer"/>
                 </FormControl>
@@ -278,7 +278,7 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
           name="tags"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tags</FormLabel>
+              <FormLabel className="font-headline">Tags</FormLabel>
               <FormControl>
                 <div>
                   <SmartTagger 
@@ -305,7 +305,7 @@ export function CreatePromiseForm({ setOpen }: { setOpen: (open: boolean) => voi
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isPending} className="w-full">
+        <Button type="submit" disabled={isPending} className="w-full bg-gradient-to-r from-primary via-primary/80 to-yellow-600">
           {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Make Promise
         </Button>

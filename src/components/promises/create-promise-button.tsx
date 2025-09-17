@@ -56,7 +56,7 @@ export function CreatePromiseButton() {
         <SheetTrigger asChild>
           <Button
             size="icon"
-            className="fixed bottom-8 right-8 h-16 w-16 rounded-full shadow-2xl"
+            className="fixed bottom-8 right-8 h-16 w-16 rounded-full shadow-2xl bg-gradient-to-br from-primary via-primary/80 to-secondary"
           >
             <Plus className="h-8 w-8" />
             <span className="sr-only">Create a new promise</span>
@@ -64,7 +64,7 @@ export function CreatePromiseButton() {
         </SheetTrigger>
         <SheetContent side="right" className="overflow-y-auto">
           <SheetHeader>
-            <SheetTitle className="text-2xl">Make a New Promise</SheetTitle>
+            <SheetTitle className="text-2xl font-headline">Make a New Promise</SheetTitle>
             <SheetDescription>
               What will you commit to? Share your goal with the world.
             </SheetDescription>
@@ -82,7 +82,7 @@ export function CreatePromiseButton() {
       <DialogTrigger asChild>
         <Button
           size="icon"
-          className="fixed bottom-8 right-8 h-16 w-16 rounded-full shadow-2xl"
+          className="fixed bottom-8 right-8 h-16 w-16 rounded-full shadow-2xl bg-gradient-to-br from-primary via-primary/80 to-secondary"
         >
           <Plus className="h-8 w-8" />
           <span className="sr-only">Create a new promise</span>
@@ -90,7 +90,7 @@ export function CreatePromiseButton() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-md max-h-[90vh] flex flex-col">
         <DialogHeader>
-          <DialogTitle className="text-2xl">Make a New Promise</DialogTitle>
+          <DialogTitle className="text-2xl font-headline">Make a New Promise</DialogTitle>
           <DialogDescription>
             What will you commit to? Share your goal with the world.
           </DialogDescription>
