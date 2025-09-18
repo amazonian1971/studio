@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   keywords: ['promise', 'trust', 'accountability', 'goals', 'social network', 'commitment', 'personal growth', 'social accountability', 'goal tracking', 'public commitment'],
   icons: {
-    apple: "/apple-touch-icon.png",
+    apple: "/handshake-icon-180.png",
   }
 };
 
