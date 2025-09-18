@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -18,13 +19,24 @@ import { LogOut, Settings, User as UserIcon, Loader2, BookOpen } from "lucide-re
 import { ThemeToggle } from "../theme-toggle"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Tour } from "../tour/tour"
 
 export function UserNav() {
   const { user, userData, loading } = useAuth();
   const router = useRouter();
   const [isTourOpen, setTourOpen] = useState(false);
+
+  useEffect(() => {
+    if (!loading && user) {
+      const tourCompleted = localStorage.getItem("trustnet_tour_completed");
+      if (!tourCompleted) {
+        setTourOpen(true);
+        localStorage.setItem("trustnet_tour_completed", "true");
+      }
+    }
+  }, [loading, user]);
+
 
   const handleLogout = async () => {
     await logOut();

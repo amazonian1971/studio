@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import { useState } from "react";
@@ -73,10 +74,10 @@ export function Tour({ isOpen, onOpenChange }: TourProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md bg-background/80 backdrop-blur-sm border-border/50 text-foreground">
         <DialogHeader>
             <div className="flex justify-center mb-4">
-                 <div className="h-16 w-16 bg-primary/10 text-primary rounded-full flex items-center justify-center">
+                 <div className="h-16 w-16 bg-primary/20 text-primary rounded-full flex items-center justify-center border border-primary/30">
                     <Icon className="h-8 w-8" />
                 </div>
             </div>
@@ -86,14 +87,14 @@ export function Tour({ isOpen, onOpenChange }: TourProps) {
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">
-             <Progress value={progress} className="w-full" />
+             <Progress value={progress} className="w-full h-2 bg-primary/20" />
         </div>
-        <DialogFooter className="flex justify-between w-full">
+        <DialogFooter className="flex justify-between w-full sm:justify-between">
             {currentStep > 0 ? (
-                <Button variant="outline" onClick={goToPrevious}>
+                <Button variant="ghost" onClick={goToPrevious}>
                     <ArrowLeft className="mr-2 h-4 w-4" /> Previous
                 </Button>
-            ) : ( <div></div>) }
+            ) : ( <div className="sm:w-[115px]"></div>) }
           
             <Button onClick={goToNext}>
                 {currentStep < tourSteps.length - 1 ? "Next" : "Finish"}
